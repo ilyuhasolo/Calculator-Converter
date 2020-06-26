@@ -1,10 +1,10 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
-        <file>CustomButton.qml</file>
-        <file>Distance.qml</file>
-        <file>Energy.qml</file>
-        <file>Time.qml</file>
-        <file>Mass.qml</file>
+        <file>Calc_qml/main.qml</file>
+        <file>Calc_qml/CustomButton.qml</file>
+        <file>Calc_qml/Distance.qml</file>
+        <file>Calc_qml/Energy.qml</file>
+        <file>Calc_qml/Time.qml</file>
+        <file>Calc_qml/Mass.qml</file>
     </qresource>
 </RCC>
