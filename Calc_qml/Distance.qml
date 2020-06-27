@@ -7,6 +7,7 @@ Rectangle{
     id: distance
     anchors.fill: parent
     color: "#1F1D1E"
+    property variant values : []
 
     Converter{
         id: convert
@@ -22,7 +23,11 @@ Rectangle{
         height: 30
         width: parent.width/2
         onTextEdited: {
-            convert.convertDistance("mm", distance)
+            distance.values = convert.convertDistance("mm", mm.text)
+            cm.text = values[1]
+            dm.text = values[2]
+            m.text = values[3]
+            km.text = values[4]
         }
 
         Text{
@@ -45,7 +50,11 @@ Rectangle{
         height: 30
         width: parent.width/2
         onTextEdited: {
-            convert.convertDistance("cm", distance)
+            distance.values = convert.convertDistance("cm", cm.text)
+            mm.text = values[0]
+            dm.text = values[2]
+            m.text = values[3]
+            km.text = values[4]
         }
 
         Text{
@@ -68,7 +77,11 @@ Rectangle{
         height: 30
         width: parent.width/2
         onTextEdited: {
-            convert.convertDistance("dm", distance)
+            distance.values = convert.convertDistance("dm", dm.text)
+            mm.text = values[0]
+            cm.text = values[1]
+            m.text = values[3]
+            km.text = values[4]
         }
 
         Text{
@@ -91,7 +104,11 @@ Rectangle{
         height: 30
         width: parent.width/2
         onTextEdited: {
-            convert.convertDistance("m", distance)
+            distance.values = convert.convertDistance("m", m.text)
+            mm.text = values[0]
+            cm.text = values[1]
+            dm.text = values[2]
+            km.text = values[4]
         }
 
         Text{
@@ -114,7 +131,11 @@ Rectangle{
         height: 30
         width: parent.width/2
         onTextEdited: {
-            convert.convertDistance("km", distance)
+            distance.values = convert.convertDistance("km", km.text)
+            mm.text = values[0]
+            cm.text = values[1]
+            dm.text = values[2]
+            m.text = values[3]
         }
 
         Text{
