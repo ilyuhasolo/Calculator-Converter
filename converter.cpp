@@ -11,55 +11,58 @@ converter::converter(QObject *parent) : QObject(parent)
 
 }
 
-void converter::convertDistance(QString type, QObject *distWindow)
+QList<QString> converter::convertDistance(QString type, QString value)
 {
     double mm = 0;
     double cm = 0;
     double dm = 0;
     double m = 0;
     double km = 0;
+    QList<QString> massive;
 
     if(type == "mm"){
-        mm = QQmlProperty::read(distWindow->findChild<QObject *>("mm"), "text").toDouble();
+        mm = value.toDouble();
         cm = mm / 10;
         dm = cm / 10;
         m = cm / 100;
         km = m / 1000;
     }
     else if(type == "cm"){
-        cm = QQmlProperty::read(distWindow->findChild<QObject *>("cm"), "text").toDouble();
+        cm = value.toDouble();
         mm = cm * 10;
         dm = cm / 10;
         m = cm / 100;
         km = m / 1000;
     }
     else if(type == "dm"){
-        dm = QQmlProperty::read(distWindow->findChild<QObject *>("dm"), "text").toDouble();
+        dm = value.toDouble();
         cm = dm * 10;
         mm = cm * 10;
-        m = cm / 10;
+        m = cm / 100;
         km = m / 1000;
     }
     else if(type == "m"){
-        m = QQmlProperty::read(distWindow->findChild<QObject *>("m"), "text").toDouble();
+        m = value.toDouble();
         cm = m * 100;
         mm = cm * 10;
         dm = cm / 10;
         km = m / 1000;
     }
     else if(type == "km"){
-        km = QQmlProperty::read(distWindow->findChild<QObject *>("km"), "text").toDouble();
+        km = value.toDouble();
         m = km * 1000;
         cm = m * 100;
         mm = cm * 10;
         dm = cm / 10;
     }
 
-    distWindow->findChild<QObject *>("mm")->setProperty("text", QString::number(mm, 'g', 15));
-    distWindow->findChild<QObject *>("cm")->setProperty("text", QString::number(cm, 'g', 15));
-    distWindow->findChild<QObject *>("dm")->setProperty("text", QString::number(dm, 'g', 15));
-    distWindow->findChild<QObject *>("m")->setProperty("text", QString::number(m, 'g', 15));
-    distWindow->findChild<QObject *>("km")->setProperty("text", QString::number(km, 'g', 15));
+    massive.push_back(QString::number(mm));
+    massive.push_back(QString::number(cm));
+    massive.push_back(QString::number(dm));
+    massive.push_back(QString::number(m));
+    massive.push_back(QString::number(km));
+
+    return massive;
 }
 
 void converter::convertTime(QString type, QObject *timeWindow)
